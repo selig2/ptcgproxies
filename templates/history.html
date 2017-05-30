@@ -1,0 +1,39 @@
+{% extends "generic.html" %}
+
+{% block title %}
+	<h2> Your Betting History </h2>
+{% endblock %}
+
+
+{% block history %}
+	<section>
+		<div class = "table-wrapper">	
+			<table class = "alt">
+				<thead>
+					<tr>
+						<th> Date </th>
+						<th> Team1 </th>
+						<th> Team2 </th>
+						<th> Amount </th>
+						<th> Over/Under </th>
+						<th> Result </th>
+
+					</tr>
+				</thead>
+				<tbody>
+					{% for bet in history %}
+						<tr>	
+							<td> {{bet[0]}} </td>
+							<td> {{bet[1]}} </td>
+							<td> {{bet[2]}} </td>
+							<td> {{bet[3]}} </td>
+							<td> {{bet[4]}} </td>
+							<td> {{bet[5]}} </td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</section>
+{% endblock %}
+

@@ -1,0 +1,34 @@
+{% extends "generic.html" %}
+
+{% block title %}
+	<h2> Place Bet </h2>
+{% endblock %}
+
+{% block placeBet %}
+<div class = "container">
+  <form method="post" name = "login">
+      {{ form.hidden_tag() }}
+      <p>
+          <br>
+          <div class="4u 12u$(xsmall)">
+            {{ form.amount(placeholder="Bet Amount") }}
+          </div>
+          {% for error in form.amount.errors %}
+              <span style="color: red;">{{ error }}</span>
+          {% endfor %}
+      </p>
+
+      <p> 
+          <div class="4u 12u$(xsmall)">
+            {{ form.overUnder }}
+          </div>
+          {% for error in form.overUnder.errors %}
+              <span style="color: red;">{{ error }}</span>
+          {% endfor %}
+      </p>
+
+      <input type="submit" value="Place Bet">
+  </form>
+</div>
+
+{% endblock %}

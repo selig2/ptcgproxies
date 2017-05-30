@@ -1,0 +1,36 @@
+{% extends "generic.html" %}
+
+{% block title %}
+	<h2> Predictions </h2>
+{% endblock %}
+
+
+{% block predictions %}
+
+	{% for game in gameInfo %}
+		<section id="one" class="wrapper style1">
+			<div class="inner">
+				<article class="feature left">
+					<span class="image"><img src="{{game[4]}}" alt="" /></span>
+					<div class="content">
+						<h2>Date: {{game[5] }} </h2>
+
+						{% if game[2] > game[4] %}
+							<h1 style = "color:#008000">{{ game[0] }} -- {{ game[2] }} </h1>
+							<h1 style = "color:#ff0000">{{ game[1] }} -- {{ game[3] }} </h1>
+						{% endif %}
+
+						{% if game[2] < game[4] %}
+							<h1 style = "color:#ff0000">{{ game[0] }} -- {{ game[2] }} </h1>
+							<h1 style = "color:#008000">{{ game[1] }} -- {{ game[3] }} </h1>
+						{% endif %}
+						<h2>Over/Under: {{game[6]}}</h2>
+					</div>
+					<a href="{{url_for('betOn', game_id = game[7])}}" class="button small special">Bet On</a>
+
+				</article>
+			</div>
+		</section>
+	{% endfor %}
+
+{% endblock %}

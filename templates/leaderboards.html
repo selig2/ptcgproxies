@@ -1,0 +1,34 @@
+{% extends "generic.html" %}
+
+{% block title %}
+	<h2> Leaderboards </h2>
+{% endblock %}
+
+
+{% block leaderboard %}
+	<section>
+		<div class = "table-wrapper">	
+			<table class = "alt">
+				<thead>
+					<tr>
+						<th> Username </th>
+						<th> Coin Amount </th>
+						<th> Bets Won </th>
+						<th> Bets Lost </th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for user in allUsers %}
+						<tr>	
+							<td> {{user[0]}} </td>
+							<td> {{user[1]}} </td>
+							<td> {{user[2]}} </td>
+							<td> {{user[3]}} </td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</section>
+{% endblock %}
+

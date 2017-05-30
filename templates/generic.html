@@ -1,0 +1,129 @@
+<!-- source: https://templated.co/items/demos/retrospect/generic.html -->
+<!DOCTYPE HTML>
+<!--
+	Retrospect by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+	<head>
+		<title>Proxy</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="/static/js/bootstrap.min.js"></script>
+
+		<link rel="stylesheet" href="/static/css/alertify.css">
+		<link rel="stylesheet" href="/static/css/themes/semantic.css">
+		<script src="/static/js/alertify.js"></script>
+
+		<script type="text/javascript">        
+			//override defaults
+			alertify.defaults.transition = "zoom";
+			alertify.defaults.theme.ok = "ui positive button";
+			alertify.defaults.theme.cancel = "ui black button";
+		</script>    
+
+		<link rel="stylesheet" href="/static/css/main.css" />
+
+
+
+
+
+
+
+
+	</head>
+	<body>
+
+		<header id="header">
+			{% if session["logged_in"] %}
+
+				<a href="/index">Welcome, {{session['username']}}</a>
+			{% endif %}
+
+			<a href="#nav">Menu</a>
+		</header>
+
+		<nav id="nav">
+			<ul class="links">
+
+				{% if session["logged_in"] %}
+					<li><a href="/index">Home</a></li>
+					<!-- <li><a href="/predictions">Predictions</a></li>
+					<li><a href="/proxies">Proxies</a></li>
+					<!-- <li><a href="/history">Betting History</a></li> -->
+					<li><a href="/logout">Logout</a></li>
+
+				{% endif %}
+
+				{% if not session["logged_in"] %}
+					<li><a href="/index">Home</a></li>
+					<li><a href="/login">Login</a></li>
+					<li><a href="/signup">Sign Up</a></li>
+					<!-- <li><a href="/leaderboards">Leaderboards</a></li> -->
+				{% endif %}
+
+			</ul>
+		</nav>
+		<section id="banner">
+ 			<ul class="actions">
+ 				{% block title %}
+ 				{% endblock %}
+ 				{% if session["logged_in"] %}
+					<li><a href="/makeProxies" class="button special big">All Cards</a></li>
+					<li><a href="/myProxies" class="button special big">My Proxies</a></li>
+
+
+				{% endif %}
+
+ 				{% if not session["logged_in"] %}
+					<li><a href="/login" class="button special big">Login</a></li>
+					<li><a href="/signup" class="button special big">Signup</a></li>
+				{% endif %}
+
+
+			</ul>
+		</section>
+
+
+		{% block login %}
+		{% endblock %}
+
+		{% block signup %}
+		{% endblock %}
+
+		{% block leaderboard %}
+		{% endblock %}
+
+		{% block predictions %}
+		{% endblock %}
+
+		{% block placeBet %}
+		{% endblock %}
+
+		{% block history %}
+		{% endblock %}
+
+		{% block proxies %}
+		{% endblock %}
+
+		<footer id="footer">
+			<div class="inner">
+				<ul class="copyright">
+					<li>Card Data: <a href="https://pokemontcg.io/">PokemonTCG-API</a>.</li>
+					<li>Design: <a href="http://templated.co/retrospect">Templated</a>.</li>
+					<li>Banner: <a href = "http://cargocollective.com/ollymoss/Pokemon">Olly Moss</a>.</li>
+				</ul>
+			</div>
+		</footer>
+
+		<script src="/static/js/jquery.min.js"></script>
+		<script src="/static/js/skel.min.js"></script>
+		<script src="/static/js/util.js"></script>
+		<script src="/static/js/main.js"></script>
+
+	</body>
+</html>

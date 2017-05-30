@@ -1,0 +1,119 @@
+{% extends "generic.html" %}
+
+{% block title %}
+	<h2> Proxies </h2>
+{% endblock %}
+
+
+{% block proxies %}
+
+
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-body text-center">
+                <img class="img-responsive" src="#"/>
+            </div>
+            <div class="modal-footer">
+                <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type = "text/javascript">
+	function alert_card_added(clicked_id, card_name) 
+	{
+
+		$.ajax({
+		    type: "POST",
+		    url: "/addCard",
+		    data: {card_id: clicked_id},
+		    success: function(data){
+		    }
+		    });
+		alertify.notify(card_name + " added!", 'success', 1.5);
+	}
+</script>
+
+<section>	
+	<hr>
+	<input type="text" id="cardSearch" onkeyup="filterCards()" placeholder="Search for cards by name..">
+	<hr>
+	<div style="height:450px;overflow:auto;">
+
+		<div class = "table-wrapper">	
+
+			<table class = "alt" id = "allCards">
+
+				<tr>
+					<th style="text-align:center"> Name </th>
+					<th style="text-align:center"> Set </th>
+					<th style="text-align:center"> Preview </th>
+					<th style="text-align:center"> Add Card </th>
+				</tr>
+
+				<tbody>
+					{% for card in allCards %}
+						<tr>
+							<td align = "center"> {{card[0]}}  </td>
+							<td align = "center"> {{card[1]}} </td>
+							<td align = "center"> 
+ 								<a href="#myModal" data-toggle = "modal" class = "button small alt" data-img-url= "{{ '/static/images/hiresCardImages/' ~ card[3] ~ '.png'}}"> Preview Card </a>
+							</td>
+
+							<td align = "center"> 
+ 							    <a onclick = "alert_card_added(this.id, this.name)" name = "{{card[0]}}" id = "{{card[3]}}" class = "button small alt" tmp = "x"> Add Proxy </a>
+
+							</td>
+
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+
+	</div>
+</section>
+
+<hr>
+
+<script type="text/javascript">
+	$('td a').click(function (e) {
+	    $('#myModal img').attr('src', $(this).attr('data-img-url'));
+	});
+</script>
+
+<script>
+
+function filterCards() {
+  // Declare variables 
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("cardSearch");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("allCards");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    } 
+  }
+}
+</script>
+
+
+
+
+{% endblock %}
+

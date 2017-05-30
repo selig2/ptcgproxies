@@ -1,0 +1,39 @@
+<!-- source: https://templated.co/items/demos/retrospect/generic.html -->
+
+<!-- extend generic layout -->
+{% extends "generic.html" %}
+
+{% block title %}
+  <h2> Login </h2>
+{% endblock %}
+
+
+
+{% block login %}
+<div class = "container">
+  <form method="post" name = "login">
+      {{ form.hidden_tag() }}
+      <p>
+          <br>
+          <div class="4u 12u$(xsmall)">
+            {{ form.username(placeholder="Username") }}
+          </div>
+          {% for error in form.username.errors %}
+              <span style="color: red;">{{ error }}</span>
+          {% endfor %}
+      </p>
+
+      <p> 
+          <div class="4u 12u$(xsmall)">
+            {{ form.password(placeholder="Password") }}
+          </div>
+          {% for error in form.password.errors %}
+              <span style="color: red;">{{ error }}</span>
+          {% endfor %}
+      </p>
+
+      <input type="submit" value="Sign In">
+
+  </form>
+</div>
+{% endblock %}

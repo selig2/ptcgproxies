@@ -1,0 +1,57 @@
+<!-- extend generic layout -->
+{% extends "generic.html" %}
+<!-- source: https://templated.co/items/demos/retrospect/generic.html -->
+
+
+{% block title %}
+  <h2> Sign Up </h2>
+{% endblock %}
+
+
+{% block signup %}
+<div class = "container">
+  <form method="post" name = "signup">
+      {{ form.hidden_tag() }}
+
+      <p>
+          <br>
+          <div class="4u 12u$(xsmall)">
+            {{ form.email(placeholder="Email") }}
+          </div>
+          {% for error in form.email.errors %}
+              <span style="color: red;">{{ error }}</span>
+          {% endfor %}
+      </p>
+
+      <p>
+          <div class="4u 12u$(xsmall)">
+            {{ form.username(placeholder="Username") }}
+          </div>
+          {% for error in form.username.errors %}
+              <span style="color: red;">{{ error }}</span>
+          {% endfor %}
+      </p>
+
+      <p> 
+          <div class="4u 12u$(xsmall)">
+            {{ form.password(placeholder="Password") }}
+          </div>
+          {% for error in form.password.errors %}
+              <span style="color: red;">{{ error }}</span>
+          {% endfor %}
+      </p>
+
+      <p> 
+          <div class="4u 12u$(xsmall)">
+            {{ form.rePassword(placeholder="Confirm Password") }}
+          </div>
+          {% for error in form.rePassword.errors %}
+              <span style="color: red;">{{ error }}</span>
+          {% endfor %}
+      </p>
+
+
+      <input type="submit" value="Sign Up">
+  </form>
+</div>
+{% endblock %}
