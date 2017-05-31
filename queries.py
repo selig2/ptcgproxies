@@ -62,7 +62,7 @@ def getAllCards():
 	conn = sqlite3.connect("pokemontcg.db")
 	cur = conn.cursor()
 	query = "SELECT name, card_set, card_id, api_card_id, imageURL FROM Card WHERE card_set = ?"
-	cur.execute(query, ("Guardians Rising",))
+	cur.execute(query, ("Base",))
 	results = cur.fetchall()
 	conn.close()
 	return results

@@ -26,18 +26,17 @@ def saveAllCardImages():
 	for s in sets["sets"]:
 		cardsInSet = s["totalCards"]
 		print(s["series"], cardsInSet, s["code"])
-		if(s["code"] == "sm2"):
-			totalCards += s["totalCards"]
-			for i in range(1, cardsInSet + 1):
-				url = "https://api.pokemontcg.io/v1/cards/" + s["code"] + "-" + str(i)
-				response = requests.get(url, verify = "/etc/ssl/cert.pem")
-				card = response.json()
-				if("status" in card):
-					print (card, s["code"], i, "FAILED")
-				else:
-					cardImage = card["card"]["imageUrlHiRes"]
-					saveCardImage(cardImage, card["card"]["id"] + "_hires" + ".png")
-					print (card, s["code"], i, "PASSED")
+		totalCards += s["totalCards"]
+		for i in range(1, cardsInSet + 1):
+			url = "https://api.pokemontcg.io/v1/cards/" + s["code"] + "-" + str(i)
+			response = requests.get(url, verify = "/etc/ssl/cert.pem")
+			card = response.json()
+			if("status" in card):
+				print (card, s["code"], i, "FAILED")
+			else:
+				cardImage = card["card"]["imageUrlHiRes"]
+				saveCardImage(cardImage, card["card"]["id"] + "_hires" + ".png")
+				print (card, s["code"], i, "PASSED")
 
 def insertAllCards():
 	# @ desc loops over all cards and inserts them into the database where appropriate

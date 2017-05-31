@@ -10,16 +10,17 @@ def resize(infile):
 	# @ param infile the path to the image file
 	# @ return none
 
-	newSize = (240, 335)
-	if("sm2" in infile):
-		im = Image.open(infile)
-		im.thumbnail(newSize, Image.ANTIALIAS)
-		im.save(infile, "png")
+	newSize = (350, 489)
+	im = Image.open(infile)
+	im.thumbnail(newSize, Image.ANTIALIAS)
+	im.save(infile, "png")
 
 
-# for image in os.listdir("static/images/cardImages/"):
-# 	print image
-# 	resize("static/images/cardImages/" + image)
+# for image in os.listdir("static/images/hiresCardImages/"):
+# 	if(image[0] != "."):
+# 		print image
+# 		resize("static/images/hiresCardImages/" + image)
+	
 def chunkify(cardList):
 	# @ desc takes the cards that the user has selected and splits their list into chucks of at most 9
 	# @ return 
